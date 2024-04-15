@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -e
-source ~/.cargo/env
-cargo build --release
-export ROCKET_ENV=production
-./target/release/time-as-pdf
