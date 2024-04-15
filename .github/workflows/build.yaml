@@ -6,7 +6,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [x86_64-unknown-linux-musl]
+        include:
+          - target: x86_64-unknown-linux-musl
+            archive: tar.gz
     steps:
       - uses: actions/checkout@master
       - name: Compile and release
@@ -16,4 +18,11 @@ jobs:
         with:
           RUSTTARGET: ${{ matrix.target }}
           EXTRA_FILES: "Rocket.toml"
-          ARCHIVE_NAME: "release.zip"
+          ARCHIVE_NAME: release.tar.gz
+          UPLOAD_MODE: none
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Binary
+          path: |
+            ${{ steps.compile.outputs.BUILT_ARCHIVE }}
