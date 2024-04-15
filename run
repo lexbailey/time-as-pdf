@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 cargo build --release
 export ROCKET_ENV=production
 ./target/release/time-as-pdf
