@@ -38,7 +38,7 @@ fn clockface(content: &mut Content, now: DateTime<FixedOffset>) {
         }
     }
     radial_line(content, 2. * PI / 60. * now.minute() as f32, 0., 70.);
-    radial_line(content, 2. * PI / 12. * now.hour() as f32, 0., 48.);
+    radial_line(content, 2. * PI / 12. * (now.hour() as f32 + (now.minute() as f32/60.0)), 0., 48.);
 
     content.set_line_width(1.);
     radial_line(content, 2. * PI / 60. * now.second() as f32, 0., 75.);
